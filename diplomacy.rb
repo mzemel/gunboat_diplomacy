@@ -32,9 +32,7 @@ get "/sms" do
     "Message sent!"
   rescue => e
     {
-      error: e.message,
-      twilio_account_sid: DiploConfig.account_sid,
-      twilio_auth_token: DiploConfig.auth_token
+      error: e.message
     }.to_json
   end
 end
@@ -48,9 +46,7 @@ post "/sms" do
     })
   rescue => e
     {
-      error: e.message,
-      twilio_account_sid: DiploConfig.account_sid,
-      twilio_auth_token: DiploConfig.auth_token
+      error: e.message
     }.to_json
   end
 end
