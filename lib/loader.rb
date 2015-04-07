@@ -1,0 +1,5 @@
+require_relative 'diplo_config'
+require_relative 'twilio'
+require_relative 'move'
+require_relative 'responses'
+require_relative 'errors'

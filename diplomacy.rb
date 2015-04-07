@@ -3,51 +3,41 @@ require 'twilio-ruby'
 require 'sinatra'
 require 'pry'
 
-require_relative 'config'
+require_relative "lib/loader"
 
-Twilio.configure do |config|
-  config.account_sid = DiploConfig.account_sid
-  config.auth_token = DiploConfig.auth_token
-end
-
-def twilio_client
-  Twilio::REST::Client.new(auth_token: DiploConfig.auth_token)
-end
-
-def phone_number
-  DiploConfig.phone_number
-end
- 
 get "/" do
   haml :index
 end
 
-get "/sms" do
-  begin
-    twilio_client.account.messages.create({
-      :from => DiploConfig.phone_number, 
-      :to => '18605399805', 
-      :body => 'test',  
-    })
-    "Message sent!"
-  rescue => e
-    {
-      error: e.message
-    }.to_json
-  end
+get "/test" do
+  Move.new("Germany A Kie-Ber", "8605399805")
+end
+
+get "/current" do
+  Move.collection.to_json
+end
+
+post "/test" do
+  Move.new(params["Body"], params["From"])
 end
 
 post "/sms" do
   begin
-    twilio_client.account.messages.create({
-      :from => DiploConfig.phone_number, 
-      :to => '18605399805', 
-      :body => params.inspect,  
-    })
+    case params["Body"]
+    when /help/i
+      Responses.send_help_message(params["From"])
+    when /end\s+round/i
+      Move.end_round!
+    else
+      Move.new(params["Body"], params["From"])
+      Responses.move_submit_success(params["From"])
+    end
+  rescue Errors::MoveParseError
+    Responses.move_submit_failure(params["From"])
+  rescue Errors::EndRoundError
+    Responses.end_round_error(params["From"])
   rescue => e
-    {
-      error: e.message
-    }.to_json
+    Responses.send_string("Error: #{e.message}", params["From"])
   end
 end
 
