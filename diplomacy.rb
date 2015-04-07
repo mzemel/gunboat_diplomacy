@@ -11,7 +11,7 @@ Twilio.configure do |config|
 end
 
 def twilio_client
-  Twilio::REST::Client.new
+  Twilio::REST::Client.new(auth_token: DiploConfig.auth_token)
 end
 
 def phone_number
