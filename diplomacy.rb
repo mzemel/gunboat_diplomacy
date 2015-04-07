@@ -31,7 +31,11 @@ get "/sms" do
     })
     "Message sent!"
   rescue => e
-    puts "Error: #{e.message}"
+    {
+      error: e.message,
+      twilio_account_sid: DiploConfig.account_sid,
+      twilio_auth_token: DiploConfig.auth_token
+    }.to_json
   end
 end
 
@@ -43,7 +47,11 @@ post "/sms" do
       :body => params.inspect,  
     })
   rescue => e
-    puts "Error: #{e.message}"
+    {
+      error: e.message,
+      twilio_account_sid: DiploConfig.account_sid,
+      twilio_auth_token: DiploConfig.auth_token
+    }.to_json
   end
 end
 
