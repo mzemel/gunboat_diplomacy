@@ -23,20 +23,28 @@ get "/" do
 end
 
 get "/sms" do
-  twilio_client.account.messages.create({
-    :from => DiploConfig.phone_number, 
-    :to => '18605399805', 
-    :body => 'test',  
-  })
-  "Message sent!"
+  begin
+    twilio_client.account.messages.create({
+      :from => DiploConfig.phone_number, 
+      :to => '18605399805', 
+      :body => 'test',  
+    })
+    "Message sent!"
+  rescue => e
+    puts "Error: #{e.message}"
+  end
 end
 
 post "/sms" do
-  twilio_client.account.messages.create({
-    :from => DiploConfig.phone_number, 
-    :to => '18605399805', 
-    :body => params.inspect,  
-  })
+  begin
+    twilio_client.account.messages.create({
+      :from => DiploConfig.phone_number, 
+      :to => '18605399805', 
+      :body => params.inspect,  
+    })
+  rescue => e
+    puts "Error: #{e.message}"
+  end
 end
 
 __END__
