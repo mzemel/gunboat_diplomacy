@@ -8,6 +8,10 @@ require_relative 'config'
 def twilio_client
   @client ||= Twilio::REST::Client.new DiploConfig.account_sid, DiploConfig.auth_token 
 end
+
+def phone_number
+  DiploConfig.phone_number
+end
  
 get "/" do
   haml :index
