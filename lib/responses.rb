@@ -12,15 +12,15 @@ class Responses
       Diplomacy.twilio_client.account.messages.create({
         :from => DiploConfig.phone_number, 
         :to => from, 
-        :body => "Move could not be understood - did you include the country, spelled out fully?",  
+        :body => "Command could not be understood.  If it was a move, spell the country out fully.  Otherwise, text Commands to see all available commands.",  
       })
     end
 
-    def send_info_message(from)
+    def send_commands_message(from)
       Diplomacy.twilio_client.account.messages.create({
         :from => DiploConfig.phone_number, 
         :to => from, 
-        :body => "Reply to me with any of these commands:\nInfo; End round; Germany F Kie-Den A Ber-Kie A Mun-Ruh (or appropriate variant)",  
+        :body => "Reply to me with any of these commands:\nCommands; End round; Germany F Kie-Den A Ber-Kie A Mun-Ruh (or appropriate variant)",  
       })
     end
 

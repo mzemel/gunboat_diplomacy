@@ -12,8 +12,8 @@ end
 post "/sms" do
   begin
     case params["Body"]
-    when /info/i
-      Responses.send_info_message(params["From"])
+    when /commands/i
+      Responses.send_commands_message(params["From"])
     when /end\s+round/i
       Move.end_round!
     else
@@ -41,7 +41,7 @@ __END__
 %div Here are the valid commands:
 %ul
   %li 
-    %b Info
+    %b Commands
     (this message/check connectivity)
   %li
     %b Germany F Kie-Den A Ber-Kie A Mun-Ruh

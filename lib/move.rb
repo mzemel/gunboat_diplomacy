@@ -25,7 +25,7 @@ class Move
   end
 
   def initialize(move, from)
-    raise MoveParseError if !COUNTRIES.any? {|country| move.match /#{country}/i }
+    raise Errors::MoveParseError if !COUNTRIES.any? {|country| move.match /#{country}/i }
     add_to_current_round(move, from)
   end
 
