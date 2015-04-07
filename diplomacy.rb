@@ -36,9 +36,8 @@ __END__
   = yield
 
 @@ index
-%h4 Welcome to my gunboat diplomacy engine.
-%div To use this app, text commands to <b>#{DiploConfig.phone_number}</b>.
-%div Here are the valid commands:
+%h4 Welcome to Gunboat Diplomacy.
+%div Text your diplomacy moves to <b>#{DiploConfig.phone_number}</b> - do any of the following:
 %ul
   %li 
     %b Commands
@@ -51,11 +50,10 @@ __END__
     (process ALL moves)
 
 %ol
-  %li When you successfully text your moves, you'll get a confirmation text.  If there are errors, such as forgetting the country name, you'll receive a text instructing you to fix it, stupid.
-  %li When someone texts <b>End round</b>, all moves are combined and texted to everyone.  The round is over.
-  %li This app doesn't keep track of seasons; do that yourself. 
-  %li Invalid moves are ignored.  Beware of autocorrect!
-  %li Do the round over if anything went wrong.
+  %li Don't worry about seasons.  This process will be for every turn.
+  %li Text your moves (see above format)
+  %li At the round end time, have one person text <b>End round</b>.
+  %li Everyone gets a text with all the moves for that round, anonymously.
 %br
 %div Hopefull you receive a text that looks like this:
 %ul
