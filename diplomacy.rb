@@ -5,8 +5,13 @@ require 'pry'
 
 require_relative 'config'
 
+Twilio.configure do |config|
+  config.account_sid = DiploConfig.account_sid
+  config.auth_token = DiploConfig.auth_token
+end
+
 def twilio_client
-  @client ||= Twilio::REST::Client.new DiploConfig.account_sid, DiploConfig.auth_token 
+  Twilio::REST::Client.new
 end
 
 def phone_number
