@@ -9,18 +9,6 @@ get "/" do
   haml :index
 end
 
-get "/test" do
-  Move.new("Germany A Kie-Ber", "8605399805")
-end
-
-get "/current" do
-  Move.collection.to_json
-end
-
-post "/test" do
-  Move.new(params["Body"], params["From"])
-end
-
 post "/sms" do
   begin
     case params["Body"]
