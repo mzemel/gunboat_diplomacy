@@ -16,11 +16,11 @@ class Responses
       })
     end
 
-    def send_help_message(from)
+    def send_info_message(from)
       Diplomacy.twilio_client.account.messages.create({
         :from => DiploConfig.phone_number, 
         :to => from, 
-        :body => "Reply to me with any of these commands:\nHelp; End round; Germany F Kie-Den A Ber-Kie A Mun-Ruh (or appropriate variant)",  
+        :body => "Reply to me with any of these commands:\nInfo; End round; Germany F Kie-Den A Ber-Kie A Mun-Ruh (or appropriate variant)",  
       })
     end
 
